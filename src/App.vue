@@ -1,13 +1,17 @@
 <template>
 	<div class="main">
-		<div class="menu" v-on:mdclick="showContent">
-			<Menu :items="getMenuItems"></Menu>
-		</div>
-		<div v-html="html"></div>
+		<Navbar />
+		<section>
+			<div class="menu" v-on:mdclick="showContent">
+				<Menu :items="getMenuItems"></Menu>
+			</div>
+			<div class="content" v-html="html"></div>
+		</section>
 	</div>
 </template>
 
 <script>
+import Navbar from './components/Navbar'
 import Menu from "./components/Menu/Menu.vue";
 
 import fs from "fs";
@@ -16,6 +20,7 @@ import marked from "marked";
 export default {
 	name: "App",
 	components: {
+		Navbar,
 		Menu,
 	},
 	data() {
@@ -127,8 +132,17 @@ export default {
 </script>
 
 <style>
-.main {
+section {
+	padding: 15px;
 	display: flex;
+}
+
+.menu {
+	width: 20%;
+}
+
+.content {
+	width: 100%;
 }
 
 #app {
@@ -136,6 +150,5 @@ export default {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	color: #2c3e50;
-	margin-top: 60px;
 }
 </style>
